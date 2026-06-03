@@ -1,3 +1,8 @@
+/**
+ * @file api.hpp
+ * @brief Declares API functions and wrapper classes around a CPP HTTP library
+ */
+
 #ifndef _API
 #define _API
 

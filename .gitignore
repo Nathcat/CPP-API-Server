@@ -21,4 +21,4 @@ CMakeUserPresets.json
 libs/mysql
 .cache
 build
-
+docs-out
