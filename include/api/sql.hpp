@@ -51,6 +51,12 @@ template <typename T> T fromRow(std::unique_ptr<sql::ResultSet> &res);
 template <typename T>
 std::vector<T> toArray(std::unique_ptr<sql::ResultSet> &res);
 
+namespace util {
+/**
+ * @brief Check if a given user is a member of a group
+ */
+bool isMemberOfGroup(std::unique_ptr<sql::Connection> &db, int user, int group);
+} // namespace util
 } // namespace sqlwrapper
 } // namespace nathcat
 

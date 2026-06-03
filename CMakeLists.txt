@@ -7,6 +7,7 @@ add_subdirectory(libs)
 add_library(apiserver SHARED
   src/Server.cpp
   src/sqlwrapper.cpp
+  src/util.cpp
 )
 
 target_include_directories(apiserver PUBLIC
