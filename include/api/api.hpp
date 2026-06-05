@@ -69,6 +69,15 @@ public:
    */
   void listen(std::string host, int port) { http.listen(host, port); }
 };
+
+/**
+ * @brief Attempt to extract a cookie from a request
+ *
+ * @param req The request
+ * @param name The cookie name to look for
+ * @return the string value of the cookie, NULL if the cookie cannot be found
+ */
+std::string get_cookie(const httplib::Request &req, std::string name);
 } // namespace api
 } // namespace nathcat
 
