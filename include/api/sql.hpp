@@ -49,7 +49,15 @@ template <typename T> T fromRow(std::unique_ptr<sql::ResultSet> &res);
  * @return An array of the rows as the given type
  */
 template <typename T>
-std::vector<T> toArray(std::unique_ptr<sql::ResultSet> &res);
+std::vector<T> toArray(std::unique_ptr<sql::ResultSet> &res) {
+  std::vector<T> v;
+
+  while (res->next()) {
+    v.push_back(fromRow<T>(res));
+  }
+
+  return v;
+}
 
 namespace util {
 /**

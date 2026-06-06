@@ -27,15 +27,3 @@ std::string nathcat::sqlwrapper::error_details(sql::SQLException &e,
 std::string nathcat::sqlwrapper::error_details(sql::SQLException &e) {
   return error_details(e, "No function name provided");
 }
-
-template <typename T>
-std::vector<T>
-nathcat::sqlwrapper::toArray(std::unique_ptr<sql::ResultSet> &res) {
-  std::vector<T> v;
-
-  while (res->next()) {
-    v.push_back(fromRow<T>(res));
-  }
-
-  return v;
-}
