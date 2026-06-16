@@ -28,7 +28,7 @@ bool nathcat::sqlwrapper::util::isMemberOfGroup(
 std::string nathcat::api::get_cookie(const httplib::Request &req,
                                      std::string name) {
   if (!req.has_header("Cookie"))
-    return NULL;
+    return "";
 
   std::string cookies = req.get_header_value("Cookie");
 
@@ -38,6 +38,6 @@ std::string nathcat::api::get_cookie(const httplib::Request &req,
   if (std::regex_match(cookies, match, r)) {
     return match[1].str();
   } else {
-    return NULL;
+    return "";
   }
 }

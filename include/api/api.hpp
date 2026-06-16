@@ -75,7 +75,7 @@ public:
  *
  * @param req The request
  * @param name The cookie name to look for
- * @return the string value of the cookie, NULL if the cookie cannot be found
+ * @return the string value of the cookie, "" if the cookie cannot be found
  */
 std::string get_cookie(const httplib::Request &req, std::string name);
 } // namespace api
