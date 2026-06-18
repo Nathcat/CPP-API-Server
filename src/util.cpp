@@ -7,6 +7,7 @@
 
 bool nathcat::sqlwrapper::util::isMemberOfGroup(
     std::unique_ptr<sql::Connection> &db, int user, int group) {
+  // Check if the user is a basic member
   std::unique_ptr<sql::PreparedStatement> stmt{db->prepareStatement(
       "select count(*) as 'count' from DataCat.Group_Members where `group` = ? "
       "and `user` = ?")};
@@ -16,12 +17,29 @@ bool nathcat::sqlwrapper::util::isMemberOfGroup(
 
   std::unique_ptr<sql::ResultSet> res{stmt->executeQuery()};
 
-  if (!res->next()) {
+  int count;
+
+  if (!res->next())
     throw sql::SQLException();
-  }
 
-  int count = res->getInt("count");
+  count = res->getInt("count");
+  if (count > 0)
+    return true;
 
+  // If not, check if they are the owner
+  stmt = std::unique_ptr<sql::PreparedStatement>{db->prepareStatement(
+      "select count(*) as 'count' from DataCat.`Groups` where "
+      "`owner` = ? and `id` = ?")};
+
+  stmt->setInt(1, user);
+  stmt->setInt(2, group);
+
+  res = std::unique_ptr<sql::ResultSet>{stmt->executeQuery()};
+
+  if (!res->next())
+    throw sql::SQLException();
+
+  count = res->getInt("count");
   return count > 0;
 }
 
