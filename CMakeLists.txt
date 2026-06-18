@@ -4,7 +4,7 @@ project(apiserver)
 
 add_subdirectory(libs)
 
-add_library(apiserver SHARED
+add_library(apiserver STATIC
   src/Server.cpp
   src/sqlwrapper.cpp
   src/util.cpp
