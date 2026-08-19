@@ -51,6 +51,8 @@ private:
   httplib::Server http;
 
 public:
+  Server();
+
   /**
    * @brief Register a new endpoint to the server
    */
