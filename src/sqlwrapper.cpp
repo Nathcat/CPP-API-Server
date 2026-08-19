@@ -1,3 +1,4 @@
+#include "jdbc/cppconn/statement.h"
 #include <api/sql.hpp>
 using namespace nathcat::sqlwrapper;
 
@@ -26,4 +27,25 @@ std::string nathcat::sqlwrapper::error_details(sql::SQLException &e,
 
 std::string nathcat::sqlwrapper::error_details(sql::SQLException &e) {
   return error_details(e, "No function name provided");
+}
+
+void nathcat::sqlwrapper::start_transaction(
+    std::unique_ptr<sql::Connection> &db) {
+  std::unique_ptr<sql::Statement> stmt{db->createStatement()};
+  stmt->executeUpdate("START TRANSACTION");
+  stmt->close();
+}
+
+void nathcat::sqlwrapper::commit_transaction(
+    std::unique_ptr<sql::Connection> &db) {
+  std::unique_ptr<sql::Statement> stmt{db->createStatement()};
+  stmt->executeUpdate("COMMIT");
+  stmt->close();
+}
+
+void nathcat::sqlwrapper::rollback_transaction(
+    std::unique_ptr<sql::Connection> &db) {
+  std::unique_ptr<sql::Statement> stmt{db->createStatement()};
+  stmt->executeUpdate("ROLLBACK");
+  stmt->close();
 }

@@ -1,10 +1,10 @@
-cmake_minimum_required(VERSION 3.31.11)
+cmake_minimum_required(VERSION 3.28.3)
 
 project(apiserver)
 
 add_subdirectory(libs)
 
-add_library(apiserver SHARED
+add_library(apiserver STATIC
   src/Server.cpp
   src/sqlwrapper.cpp
   src/util.cpp

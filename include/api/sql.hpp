@@ -59,6 +59,10 @@ std::vector<T> toArray(std::unique_ptr<sql::ResultSet> &res) {
   return v;
 }
 
+void start_transaction(std::unique_ptr<sql::Connection> &db);
+void commit_transaction(std::unique_ptr<sql::Connection> &db);
+void rollback_transaction(std::unique_ptr<sql::Connection> &db);
+
 namespace util {
 /**
  * @brief Check if a given user is a member of a group
