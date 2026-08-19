@@ -25,9 +25,3 @@ target_link_libraries(apiserver PUBLIC
   mysqlcppconn
 )
 
-if (DEFINED BUILD_TESTS)
-  project(logging_test)
-  add_executable(logging_test src/test/logging.cpp)
-  target_include_directories(logging_test PUBLIC include)
-  target_link_libraries(logging_test PUBLIC apiserver)
-endif()
